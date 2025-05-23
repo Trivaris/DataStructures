@@ -1,7 +1,6 @@
-class Queue<T>: Collection<T> {
-    private var tail: QueueNode<T>? = null
-    private var head: QueueNode<T>? = null
+package com.trivaris.datatypes
 
+class Queue<T>: DoublyLinkedList<T>(), Collection<T> {
     override fun pop(): T? {
         val node = head
         if (head == tail) {
@@ -15,7 +14,7 @@ class Queue<T>: Collection<T> {
 
     override fun push(vararg items: T) {
         for (item in items) {
-            val node = QueueNode(item, tail)
+            val node = DoublyNode(item, tail)
 
             if (head == null) {
                 head = node
@@ -30,10 +29,4 @@ class Queue<T>: Collection<T> {
 
     override fun peek(): T? =
         head?.item
-
-    private data class QueueNode<T> (
-        var item: T,
-        var prev: QueueNode<T>? = null,
-        var next: QueueNode<T>? = null
-    )
 }
